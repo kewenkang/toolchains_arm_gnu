@@ -32,7 +32,9 @@ def _compare_versions(left, right):
     right = _semver(right)
 
     # (a < b): -1, (a > b): 1, (a == b): 0.
-    compare = lambda a, b: int(a > b) - int(a < b)
+    # compare = lambda a, b: int(a > b) - int(a < b)
+    def compare(a, b):
+        return int(a > b) - int (a < b)
 
     return compare(left.major, right.major) or \
            compare(left.minor, right.minor) or \
