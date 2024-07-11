@@ -26,6 +26,9 @@ def _semver(version):
         patch = parts[2],
     )
 
+def compare(a, b):
+    return int(a > b) - int (a < b)
+
 def _compare_versions(left, right):
     """Compare two semantic versions."""
     left = _semver(left)
@@ -33,9 +36,7 @@ def _compare_versions(left, right):
 
     # (a < b): -1, (a > b): 1, (a == b): 0.
     # compare = lambda a, b: int(a > b) - int(a < b)
-    def compare(a, b):
-        return int(a > b) - int (a < b)
-
+    
     return compare(left.major, right.major) or \
            compare(left.minor, right.minor) or \
            compare(left.patch, right.patch) or \
